@@ -1,30 +1,10 @@
-import { useContext, useReducer } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../contexts/Contexts";
-type ReducerState = {
-  count: number;
-};
-
-type ReducerAction = {
-  type: string;
-};
-const initialState = { count: 0 };
-const reducer = (state: ReducerState, action: ReducerAction) => {
-  switch (action.type) {
-    case "ADD":
-      return { ...state, count: state.count + 1 };
-    case "DEL":
-      return { ...state, count: state.count - 1 };
-    case "RESET":
-      return initialState;
-  }
-
-  return state;
-};
+import { useContagem } from "../reducers/contagem";
 const Cadastro = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  //aula de reducer
-  const { age, name } = useContext(Context);
+  //como se fosse um useState o state e variavel , o dispatch a funçao
+  //utilizando reducer Separado em outra arquivo chamando o UseContagem
+
+  const [state, dispatch] = useContagem();
   return (
     <div>
       <h1>Tela de Cadastro</h1>
@@ -35,9 +15,7 @@ const Cadastro = () => {
         <button onClick={() => dispatch({ type: "DEL" })}>Remover</button>
         <button onClick={() => dispatch({ type: "RESET" })}>Reset</button>
       </div>
-      <p>
-        ola {name} como você se sente após esses {age} completos !
-      </p>
+      <p>{/* ola {name} como você se sente após esses {age} completos ! */}</p>
       <Link to="/exibir"> exbir</Link>
     </div>
   );
