@@ -15,8 +15,6 @@ const ShowData = () => {
     }
   };
 
-  console.log({ nameInput });
-
   const HandleDeletePerson = (id: string) => {
     if (id) {
       dispatch({
